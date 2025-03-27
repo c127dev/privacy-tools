@@ -1,0 +1,10 @@
+{
+  "name": "url-resolver",
+  "version": "1.0.0",
+  "description": "A shield against tracking, it's my privacy and it's my right to have it respected",
+  "main": "index.js",
+  "repository": "https://github.com/c127dev/privacy-tools.git",
+  "author": "c127",
+  "license": "MIT",
+  "private": false
+}
