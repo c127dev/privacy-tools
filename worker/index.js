@@ -12,9 +12,6 @@ async function handleRequest(request) {
     if (!targetUrl)
         return new Response('Missing parameter "url"', { status: 400 });
 
-    if (!targetUrl.startsWith('http'))
-        return new Response('Invalid URL', { status: 400 });
-
     try {
         // Simulate browser headers to avoid bot detection
         const browserHeaders = {
@@ -103,7 +100,9 @@ function cleanUrl(url) {
     const urlObj = new URL(url);
     const paramsToRemove = [
         'h', 'u', 'rdid', 'share_url', 'fbclid', 
-        'igshid', 'ref', '__cft__', '__tn__', 'crid', 'dib', 'dib_tag', 'keywords', 'qid', 'sprefix', 'th', 'igsh'
+        'igshid', 'ref', '__cft__', '__tn__', 'crid',
+        'dib', 'dib_tag', 'keywords', 'qid', 'sprefix',
+        'th', 'igsh'
     ];
     paramsToRemove.forEach(param => urlObj.searchParams.delete(param));
 
