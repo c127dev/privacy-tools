@@ -1,5 +1,5 @@
 name = "url-resolver"
-compatibility_date = "2025-26-03"
+compatibility_date = "2025-03-26"
 main = "index.js"
 
 [vars]
