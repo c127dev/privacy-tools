@@ -2,10 +2,18 @@ addEventListener('fetch', event => {
     event.respondWith(handleRequest(event.request));
 });
 
+async function decodeURIIfEncoded(url) {
+    try {
+        return decodeURI(url);
+    } catch (error) {
+        return url;
+    }
+}
+
 async function handleRequest(request) {
     const url = new URL(request.url);
-    const targetUrl = decodeURIComponent(url.searchParams.get('url'));
-    const referer = decodeURIComponent(url.searchParams.get('referer'));
+    const targetUrl = decodeURIIfEncoded(url.searchParams.get('url'));
+    const referer = decodeURIIfEncoded(url.searchParams.get('referer'));
     const userAgent = url.searchParams.get('user-agent');
     const shouldRedirect = url.searchParams.get('redirect') === '1';
 
