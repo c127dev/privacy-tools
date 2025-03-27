@@ -2,7 +2,7 @@ addEventListener('fetch', event => {
     event.respondWith(handleRequest(event.request));
 });
 
-async function decodeURIIfEncoded(url) {
+async function decodeURIEncoded(url) {
     try {
         return decodeURIComponent(url);
     } catch (error) {
