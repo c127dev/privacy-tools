@@ -76,17 +76,17 @@ wrangler deploy
 
 ### Test via cURL  
 ```bash  
-curl "https://YOUR_WORKER.workers.dev/?url=https://l.messenger.com/l.php?u=https://example.com"  
+curl "https://url-resolver.c127.dev/?url=https://l.messenger.com/l.php?u=https://example.com"  
 ```  
 **Response**:  
 ```json  
 { "cleaned_url": "https://example.com" }  
 ```  
 
-### In Messenger  
+### Links untrack  
 Just browse normally. The script auto-detects and cleans URLs:  
 - **Before**: `https://l.messenger.com/l.php?u=https%3A%2F%2Fexample.com&h=ABC123`  
-- **After**: `https://example.com`  
+- **After**: `https://url-resolver.c127.dev?redirect=1&url=https://l.messenger.com/l.php?u=https%3A%2F%2Fexample.com&h=ABC123`  
 
 
 ## 🤝 Contributing  
