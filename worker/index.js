@@ -5,7 +5,7 @@ addEventListener('fetch', event => {
 async function handleRequest(request) {
     const url = new URL(request.url);
     const targetUrl = decodeURIComponent(url.searchParams.get('url'));
-    const referer = url.searchParams.get('referer');
+    const referer = decodeURIComponent(url.searchParams.get('referer'));
     const userAgent = url.searchParams.get('user-agent');
     const shouldRedirect = url.searchParams.get('redirect') === '1';
 
