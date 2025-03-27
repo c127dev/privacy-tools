@@ -103,7 +103,7 @@ function cleanUrl(url) {
     const urlObj = new URL(url);
     const paramsToRemove = [
         'h', 'u', 'rdid', 'share_url', 'fbclid', 
-        'igshid', 'ref', '__cft__', '__tn__'
+        'igshid', 'ref', '__cft__', '__tn__', 'crid', 'dib', 'dib_tag', 'keywords', 'qid', 'sprefix', 'th'
     ];
     paramsToRemove.forEach(param => urlObj.searchParams.delete(param));
 
@@ -117,13 +117,13 @@ function cleanUrl(url) {
 
     // Delete ref= parameter from path
     const pathParts = urlObj.pathname.split('/');
-
-    // Remove ref= parameter from path
     const cleanedPathParts = pathParts.map(part => {
         if (part.startsWith('ref=')) 
             return '\n';
         return part;
     }).filter(part => part !== '');
+
+    // Rebuild path
     urlObj.pathname = cleanedPathParts.join('/');
 
     return urlObj.toString();
