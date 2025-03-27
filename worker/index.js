@@ -107,15 +107,24 @@ function cleanUrl(url) {
     ];
     paramsToRemove.forEach(param => urlObj.searchParams.delete(param));
 
-    // Amazon special rules
     if (urlObj.hostname.includes('.amazon.')) {
-        urlObj.searchParams.delete('ref');
         for (const key of urlObj.searchParams.keys())
             if (key.startsWith('__mk_'))
                 urlObj.searchParams.delete(key);
         urlObj.searchParams.delete('s');
         urlObj.searchParams.delete('sr');
     }
+
+    // Delete ref= parameter from path
+    const pathParts = urlObj.pathname.split('/');
+
+    // Remove ref= parameter from path
+    const cleanedPathParts = pathParts.map(part => {
+        if (part.startsWith('ref=')) 
+            return '\n';
+        return part;
+    }).filter(part => part !== '');
+    urlObj.pathname = cleanedPathParts.join('/');
 
     return urlObj.toString();
 }
