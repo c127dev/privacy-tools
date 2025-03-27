@@ -4,14 +4,16 @@ addEventListener('fetch', event => {
 
 async function handleRequest(request) {
     const url = new URL(request.url);
-    const targetUrl = url.searchParams.get('url');
+    const targetUrl = decodeURIComponent(url.searchParams.get('url'));
     const referer = url.searchParams.get('referer');
     const userAgent = url.searchParams.get('user-agent');
     const shouldRedirect = url.searchParams.get('redirect') === '1';
 
-    if (!targetUrl) {
+    if (!targetUrl)
         return new Response('Missing parameter "url"', { status: 400 });
-    }
+
+    if (!targetUrl.startsWith('http'))
+        return new Response('Invalid URL', { status: 400 });
 
     try {
         // Simulate browser headers to avoid bot detection
@@ -19,7 +21,7 @@ async function handleRequest(request) {
             'User-Agent': userAgent || 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
             'Accept-Language': 'en-US,es;q=0.9,en;q=0.8',
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-            'Referer': referer || 'https://www.facebook.com/',
+            'Referer': referer || 'https://www.google.com/', 
             'Sec-Fetch-Dest': 'document',
             'Sec-Fetch-Mode': 'navigate',
             'Sec-Fetch-Site': 'same-origin',
