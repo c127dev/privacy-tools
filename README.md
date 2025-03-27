@@ -60,9 +60,9 @@ wrangler deploy
 ### 2. Install Tampermonkey Script  
 - **Requirements**: Tampermonkey extension ([Chrome][Chrome Tampermonkey], [Firefox][Firefox Tampermonkey]).  
 - **Steps**:  
-  - Copy [untracker.js](tampermonkey/untracker.js).  
+  - Download Script [untracker.js][Untracker Script].  
   - Open Tampermonkey Dashboard > **+** New Script.  
-  - Paste and configure `CLOUDFLARE_WORKER_URL`
+  - Configure constants like `CLOUDFLARE_WORKER_URL`
 
 ## ⚙️ Configuration  
 
@@ -108,6 +108,8 @@ MIT License. See [LICENSE](LICENSE).
 [Tampermonkey]: https://www.tampermonkey.net/
 [Cloudflare Worker]: https://workers.cloudflare.com/
 [Issues]: https://github.com/c127dev/privacy-tools/issues
+
+[Untracker Script]: https://github.com/c127dev/privacy-tools/raw/refs/heads/main/tampermonkey/untracker.user.js
 
 [Chrome Tampermonkey]: https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo
 [Firefox Tampermonkey]: https://addons.mozilla.org/en-US/firefox/addon/tampermonkey/
