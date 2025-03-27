@@ -53,6 +53,19 @@ async function handleRequest(request) {
             finalUrl = cleanUrl(finalUrl);
         }
 
+        // Handle Google CAPTCHA and get URL from HTML
+        if (finalUrl.includes('google.com/sorry')) {
+            response = await fetch(targetUrl, {
+                redirect: 'manual',
+                headers: browserHeaders
+            });
+            const html = await response.text();
+            const match = html.match(/URL: (.+?)<br>/);
+            finalUrl = match ? match[1] : targetUrl;
+            finalUrl = cleanUrl(finalUrl);
+        }
+
+
         // If redirect=1 parameter is present, perform actual redirect
         if (shouldRedirect) {
             return Response.redirect(finalUrl, 302);
