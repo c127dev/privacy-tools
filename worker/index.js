@@ -4,7 +4,7 @@ addEventListener('fetch', event => {
 
 async function decodeURIIfEncoded(url) {
     try {
-        return decodeURI(url);
+        return decodeURIComponent(url);
     } catch (error) {
         return url;
     }
@@ -12,8 +12,8 @@ async function decodeURIIfEncoded(url) {
 
 async function handleRequest(request) {
     const url = new URL(request.url);
-    const targetUrl = await decodeURIIfEncoded(url.searchParams.get('url'));
-    const referer = await decodeURIIfEncoded(url.searchParams.get('referer'));
+    const targetUrl = await decodeURIEncoded(url.searchParams.get('url'));
+    const referer = await decodeURIEncoded(url.searchParams.get('referer'));
     const userAgent = url.searchParams.get('user-agent');
     const shouldRedirect = url.searchParams.get('redirect') === '1';
 
