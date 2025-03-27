@@ -106,5 +106,16 @@ function cleanUrl(url) {
         'igshid', 'ref', '__cft__', '__tn__'
     ];
     paramsToRemove.forEach(param => urlObj.searchParams.delete(param));
+
+    // Amazon special rules
+    if (urlObj.hostname.includes('.amazon.')) {
+        urlObj.searchParams.delete('ref');
+        for (const key of urlObj.searchParams.keys())
+            if (key.startsWith('__mk_'))
+                urlObj.searchParams.delete(key);
+        urlObj.searchParams.delete('s');
+        urlObj.searchParams.delete('sr');
+    }
+
     return urlObj.toString();
 }
